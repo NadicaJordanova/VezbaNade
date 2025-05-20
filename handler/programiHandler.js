@@ -3,8 +3,9 @@ const Programa = require('../model/programaSchema')
 
 exports.createPrograma = async (req, res) => {
     try{
+        req.body.creator = req.auth._id;
        const novaPorgrama = await Programa.create(req.body)
-
+       console.log(novaPorgrama.creator)
        res.status(200).json({
         status: "Success",
         programa: novaPorgrama
@@ -55,8 +56,8 @@ exports.deletePrograma = async (req, res) => {
 
 exports.programi = async (req, res) => {
     try{
-       const programi = await Programa.find()
-
+       const programi = await Programa.find().populate("creator")
+       
        res.status(200).json({
         status: "Success",
        programi: programi

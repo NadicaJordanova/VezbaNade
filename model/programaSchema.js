@@ -8,7 +8,14 @@ const programaSchema = new mongoose.Schema({
     oblast: {
         type: String,
         required: [true, "Oblasta e zadolzitelna"]
-    }
+    },
+    creator: 
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Vraboten"
+        }
+    
+  
 })
 
 const Programa = mongoose.model('Programa', programaSchema)
